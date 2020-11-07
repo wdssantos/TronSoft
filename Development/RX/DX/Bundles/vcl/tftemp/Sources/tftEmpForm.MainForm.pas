@@ -65,7 +65,8 @@ uses
   System.Generics.Collections,
   System.JSON,
   System.SysUtils,
-  Vcl.Forms;
+  Vcl.Forms,
+  Winapi.Windows;
 
 {$R *.dfm}
 
@@ -125,41 +126,48 @@ begin
   LTronSoftSimple.SettingFileName := ChangeFileExt(Application.ExeName, '.ini');
   LTronSoftSimple.SaveSettings;
 
-  FSettings.Execute(
-    procedure(AResponse: string)
-      var
-        LJSONArray: TJSONArray;
-        LJSONProp: TJSONObject;
-        LJSONValue: TJSONValue;
-      begin
-        if FSettings.ResponseCode = 200 then
+  try
+    FSettings.Execute(
+      procedure(AResponse: string)
+        var
+          LJSONArray: TJSONArray;
+          LJSONProp: TJSONObject;
+          LJSONValue: TJSONValue;
         begin
-          LJSONArray := TJSONObject.ParseJSONValue(TEncoding.ANSI.GetBytes(AResponse), 0) as TJSONArray;
-          if Assigned(LJSONArray) then
+          if FSettings.ResponseCode = 200 then
           begin
-            for LJSONValue in LJSONArray do
+            LJSONArray := TJSONObject.ParseJSONValue(TEncoding.ANSI.GetBytes(AResponse), 0) as TJSONArray;
+            if Assigned(LJSONArray) then
             begin
-              LJSONProp := LJSONValue as TJSONObject;
-              if LJSONProp.Count = 0 then
+              for LJSONValue in LJSONArray do
               begin
-                Continue;
-              end;
-              LCnae := TCNAE.Create;
-              try
-                LCnae.CD_CNAE := LJSONProp.Pairs[0].JsonValue.Value;
-                if not Assigned(FCnaeController.FirstOrDefault([LCnae.CD_CNAE])) then
+                LJSONProp := LJSONValue as TJSONObject;
+                if LJSONProp.Count = 0 then
                 begin
-                  LCnae.DS_CNAE := LJSONProp.Pairs[1].JsonValue.Value;
-                  FCnaeController.Save(LCnae);
+                  Continue;
                 end;
-              finally
-                FreeAndNil(LCnae);
+                LCnae := TCNAE.Create;
+                try
+                  LCnae.CD_CNAE := LJSONProp.Pairs[0].JsonValue.Value;
+                  if not Assigned(FCnaeController.FirstOrDefault([LCnae.CD_CNAE])) then
+                  begin
+                    LCnae.DS_CNAE := LJSONProp.Pairs[1].JsonValue.Value;
+                    FCnaeController.Save(LCnae);
+                  end;
+                finally
+                  FreeAndNil(LCnae);
+                end;
               end;
+              FreeAndNIL(LJSONArray);
             end;
-            FreeAndNIL(LJSONArray);
           end;
-        end;
-      end);
+        end);
+  except
+    on E: Exception do
+    begin
+      Application.MessageBox(PChar(Format('Não foi possível carregar a lista de CNAE da web. Erro: %s.', [E.Message])), 'Informação', MB_ICONINFORMATION)
+    end;
+  end;
 
   FEmpresaController := TEmpresaController.Create(damSession.Connection);
   FEmpresa := TEmpresa.Create;
@@ -187,7 +195,10 @@ end;
 
 procedure TfrmMain.btnDelClick(Sender: TObject);
 begin
-  if FEmpresa.CNPJ = '' then
+  if (FEmpresa.CNPJ.Trim = '') or
+    ((FEmpresa.CNPJ.Trim <> '') and
+     (Application.MessageBox(PChar(Format('Tem certeza de que deseja excluir a empresa ''%s?''',
+       [edtRAZAO_SOCIAL.Text])), 'Confirmação', MB_ICONQUESTION or MB_YESNO or MB_DEFBUTTON2) <> mrYes)) then
   begin
     Exit;
   end;
