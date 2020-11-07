@@ -29,10 +29,20 @@ type
 
 implementation
 
+uses
+{PROJETO}
+  tftCore.Controller;
+
 { TCnaeController }
 
 procedure TCnaeController.BeforeSave;
 begin
+  if (Entry(Entity).State = TEntityState.Added) or
+    (Entry(Entity).State = TEntityState.Modified) then
+  begin
+    Exit;
+  end;
+
   if Entity.CD_CNAE.Trim.IsEmpty then
   begin
     raise ECD_CNAEException.CreateFmt(SRequiredField, ['CD_CNAE']);

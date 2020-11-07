@@ -30,10 +30,20 @@ type
 
 implementation
 
+uses
+{PROJETO}
+  tftCore.Controller;
+
 { TEmpresaController }
 
 procedure TEmpresaController.BeforeSave;
 begin
+  if (Entry(Entity).State = TEntityState.Added) or
+    (Entry(Entity).State = TEntityState.Modified) then
+  begin
+    Exit;
+  end;
+
   if Entity.CNPJ.Trim.IsEmpty then
   begin
     raise ECNPJException.CreateFmt(SRequiredField, ['CNPJ']);
