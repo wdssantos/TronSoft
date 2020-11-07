@@ -161,6 +161,11 @@
         <DCCReference Include="FireDAC.dcp"/>
         <DCCReference Include="FireDACCommonDriver.dcp"/>
         <DCCReference Include="FireDACCommon.dcp"/>
+        <DCCReference Include="DbxCommonDriver.dcp"/>
+        <DCCReference Include="IndySystem.dcp"/>
+        <DCCReference Include="IndyProtocols.dcp"/>
+        <DCCReference Include="IndyCore.dcp"/>
+        <DCCReference Include="RESTComponents.dcp"/>
         <DCCReference Include="Sources\tftData.FDController.pas"/>
         <DCCReference Include="Sources\tftData.SessionBase.pas">
             <Form>damSessionBase</Form>

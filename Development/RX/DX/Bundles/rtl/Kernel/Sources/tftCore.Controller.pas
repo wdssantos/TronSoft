@@ -12,7 +12,7 @@ interface
 
 uses
 {IDE}
-  System.Classes, System.Generics.Collections;
+  System.Generics.Collections;
 
 type
 {$SCOPEDENUMS ON}
