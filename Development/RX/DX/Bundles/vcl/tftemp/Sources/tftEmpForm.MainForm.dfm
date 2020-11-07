@@ -1,5 +1,5 @@
 inherited frmMain: TfrmMain
-  Caption = 'frmMain'
+  Caption = 'Cadastro de Empresa'
   ClientHeight = 204
   ClientWidth = 442
   OnCreate = FormCreate
@@ -97,6 +97,7 @@ inherited frmMain: TfrmMain
     Top = 132
     Width = 210
     Height = 21
+    Style = csDropDownList
     TabOrder = 4
   end
   object cbxCD_CNAE_2: TComboBox
@@ -104,6 +105,7 @@ inherited frmMain: TfrmMain
     Top = 132
     Width = 209
     Height = 21
+    Style = csDropDownList
     TabOrder = 5
   end
   object btnPost: TButton
@@ -115,7 +117,6 @@ inherited frmMain: TfrmMain
     Caption = 'Salvar'
     TabOrder = 8
     OnClick = btnPostClick
-    ExplicitTop = 145
   end
   object btnNew: TButton
     Left = 277
@@ -126,7 +127,6 @@ inherited frmMain: TfrmMain
     Caption = 'Novo'
     TabOrder = 7
     OnClick = btnNewClick
-    ExplicitTop = 145
   end
   object btnDel: TButton
     Left = 8
@@ -137,6 +137,5 @@ inherited frmMain: TfrmMain
     Caption = 'Excluir'
     TabOrder = 6
     OnClick = btnDelClick
-    ExplicitTop = 145
   end
 end
