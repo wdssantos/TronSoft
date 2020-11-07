@@ -24,7 +24,7 @@ type
 
   TEmpresaController = class(TtftFDController<TEmpresa>)
   protected
-    procedure BeforeSave; override;
+    procedure BeforeInsertOrUpdate; override;
     procedure SetPrimaryKeys; override;
   end;
 
@@ -36,14 +36,8 @@ uses
 
 { TEmpresaController }
 
-procedure TEmpresaController.BeforeSave;
+procedure TEmpresaController.BeforeInsertOrUpdate;
 begin
-  if (Entry(Entity).State = TEntityState.Added) or
-    (Entry(Entity).State = TEntityState.Modified) then
-  begin
-    Exit;
-  end;
-
   if Entity.CNPJ.Trim.IsEmpty then
   begin
     raise ECNPJException.CreateFmt(SRequiredField, ['CNPJ']);
@@ -53,7 +47,6 @@ begin
   begin
     raise ECD_CNAE_1Exception.CreateFmt(SRequiredField, ['CD_CNAE_1']);
   end;
-
 end;
 
 procedure TEmpresaController.SetPrimaryKeys;

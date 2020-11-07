@@ -23,7 +23,7 @@ type
 
   TCnaeController = class(TtftFDController<TCNAE>)
   protected
-    procedure BeforeSave; override;
+    procedure BeforeInsertOrUpdate; override;
     procedure SetPrimaryKeys; override;
   end;
 
@@ -35,19 +35,12 @@ uses
 
 { TCnaeController }
 
-procedure TCnaeController.BeforeSave;
+procedure TCnaeController.BeforeInsertOrUpdate;
 begin
-  if (Entry(Entity).State = TEntityState.Added) or
-    (Entry(Entity).State = TEntityState.Modified) then
-  begin
-    Exit;
-  end;
-
   if Entity.CD_CNAE.Trim.IsEmpty then
   begin
     raise ECD_CNAEException.CreateFmt(SRequiredField, ['CD_CNAE']);
   end;
-
 end;
 
 procedure TCnaeController.SetPrimaryKeys;
