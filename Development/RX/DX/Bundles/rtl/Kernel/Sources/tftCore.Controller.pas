@@ -184,8 +184,7 @@ begin
     TEntityState.Added,
     TEntityState.Modified:
     begin
-      BeforeInsert;
-      BeforeUpdate;
+      BeforeInsertOrUpdate;
     end;
   end;
 end;
