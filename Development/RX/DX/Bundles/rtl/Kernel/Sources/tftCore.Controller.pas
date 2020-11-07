@@ -55,7 +55,11 @@ type
     function First(const AKeyValues: array of Variant): TtftEntity;
     function FirstOrDefault(const AKeyValues: array of Variant): TtftEntity;
     function ToList: TList<TtftEntity>;
-    procedure BeforeSave; dynamic;
+    procedure BeforeDelete; dynamic;
+    procedure BeforeInsert; dynamic;
+    procedure BeforeInsertOrUpdate; dynamic;
+    procedure BeforeSave;
+    procedure BeforeUpdate; dynamic;
     procedure DoSave(const AEntity: TtftEntity);
     procedure SetParamCommand(const ACommand: TDataSet; const AIndex: Integer; const AValue: Variant); virtual; abstract;
     procedure SetPrimaryKeys; virtual; abstract;
@@ -153,7 +157,40 @@ begin
   Result := DoToList;
 end;
 
+procedure TtftController.BeforeDelete;
+begin
+end;
+
+procedure TtftController.BeforeInsert;
+begin
+end;
+
+procedure TtftController.BeforeInsertOrUpdate;
+begin
+end;
+
 procedure TtftController.BeforeSave;
+begin
+  case Entry(Entity).State of
+    TEntityState.Added:
+      BeforeInsert;
+    TEntityState.Deleted:
+      BeforeDelete;
+    TEntityState.Modified:
+      BeforeUpdate;
+  end;
+
+  case Entry(Entity).State of
+    TEntityState.Added,
+    TEntityState.Modified:
+    begin
+      BeforeInsert;
+      BeforeUpdate;
+    end;
+  end;
+end;
+
+procedure TtftController.BeforeUpdate;
 begin
 end;
 
