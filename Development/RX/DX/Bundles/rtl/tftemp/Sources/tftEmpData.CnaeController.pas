@@ -13,9 +13,14 @@ interface
 uses
 {PROJETO}
   tftData.FDController,
-  tftEmpModel.Cnae;
+  tftData.Messages,
+  tftEmpModel.Cnae,
+{IDE}
+  System.SysUtils;
 
 type
+  ECD_CNAEException = class(Exception);
+
   TCnaeController = class(TtftFDController<TCNAE>)
   protected
     procedure BeforeSave; override;
@@ -28,7 +33,11 @@ implementation
 
 procedure TCnaeController.BeforeSave;
 begin
-  inherited;
+  if Entity.CD_CNAE.Trim.IsEmpty then
+  begin
+    raise ECD_CNAEException.CreateFmt(SRequiredField, ['CD_CNAE']);
+  end;
+
 end;
 
 procedure TCnaeController.SetPrimaryKeys;
@@ -37,3 +46,4 @@ begin
 end;
 
 end.
+

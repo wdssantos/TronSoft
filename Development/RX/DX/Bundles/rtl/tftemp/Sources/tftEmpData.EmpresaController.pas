@@ -13,9 +13,15 @@ interface
 uses
 {PROJETO}
   tftData.FDController,
-  tftEmpModel.Empresas;
+  tftData.Messages,
+  tftEmpModel.Empresas,
+{IDE}
+  System.SysUtils;
 
 type
+  ECNPJException = class(Exception);
+  ECD_CNAE_1Exception = class(Exception);
+
   TEmpresaController = class(TtftFDController<TEmpresa>)
   protected
     procedure BeforeSave; override;
@@ -28,7 +34,16 @@ implementation
 
 procedure TEmpresaController.BeforeSave;
 begin
-  inherited;
+  if Entity.CNPJ.Trim.IsEmpty then
+  begin
+    raise ECNPJException.CreateFmt(SRequiredField, ['CNPJ']);
+  end;
+
+  if Entity.CD_CNAE_1.Trim.IsEmpty then
+  begin
+    raise ECD_CNAE_1Exception.CreateFmt(SRequiredField, ['CD_CNAE_1']);
+  end;
+
 end;
 
 procedure TEmpresaController.SetPrimaryKeys;
@@ -37,3 +52,4 @@ begin
 end;
 
 end.
+
