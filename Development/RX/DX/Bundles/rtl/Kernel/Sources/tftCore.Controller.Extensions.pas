@@ -33,7 +33,7 @@ type
     procedure DeleteRecord;
     procedure InsertRecord;
     procedure UpdateRecord;
-    procedure SetEntityPropertyValues(const ACommand: TDataSet; out AEntity: TtftEntity);
+    procedure SetEntityPropertyValues(const ACommand: TDataSet; const AEntity: TtftEntity);
   public
     function DoFirstOrDefault(const AKeyValues: array of Variant): TtftEntity;
     function DoToList: TList<TtftEntity>;
@@ -179,7 +179,6 @@ function TtftControllerExtensions.DoToList: TList<TtftEntity>;
 var
   LCommand: TDataSet;
   LCommandSQL: TStringBuilder;
-  LEntity: TtftEntity;
 begin
   Result := TList<TtftEntity>.Create;
   LCommandSQL := TStringBuilder.Create;
@@ -193,10 +192,9 @@ begin
         LCommand.First;
         while not LCommand.Eof do
         begin
-          LEntity := Self.CreateObject<TtftEntity>(EntityClass);
-          LEntity.State := TEntityState.Modified;
-          SetEntityPropertyValues(LCommand, LEntity);
-          Result.Add(LEntity);
+          Result.Add(Self.CreateObject<TtftEntity>(EntityClass));
+          Result.Last.State := TEntityState.Modified;
+          SetEntityPropertyValues(LCommand, Result.Last);
           LCommand.Next;
         end;
       end;
@@ -263,7 +261,7 @@ begin
   end;
 end;
 
-procedure TtftControllerExtensions.SetEntityPropertyValues(const ACommand: TDataSet; out AEntity: TtftEntity);
+procedure TtftControllerExtensions.SetEntityPropertyValues(const ACommand: TDataSet; const AEntity: TtftEntity);
 var
   LField: TField;
   LProp: TRttiProperty;
