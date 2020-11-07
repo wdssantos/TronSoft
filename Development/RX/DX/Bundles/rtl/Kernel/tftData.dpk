@@ -39,6 +39,8 @@ requires
 contains
   tftData.FDController in 'Sources\tftData.FDController.pas',
   tftData.SessionBase in 'Sources\tftData.SessionBase.pas' {damSessionBase: TDataModule},
-  tftData.Messages in 'Sources\tftData.Messages.pas' ;
+  tftData.Messages in 'Sources\tftData.Messages.pas',
+  tftData.Controller in 'Sources\tftData.Controller.pas',
+  tftData.Controller.Extensions in 'Sources\tftData.Controller.Extensions.pas';
 
 end.

@@ -13,11 +13,12 @@ interface
 uses
 {PROJETO}
   tftCore.Controller,
+  tftData.Controller,
 {IDE}
   Data.DB, FireDAC.Comp.Client, System.Generics.Collections;
 
 type
-  TtftFDController<TEntity: TtftEntity> = class(TtftController<TEntity>)
+  TtftFDController<TEntity: TtftEntity> = class(TtftDataController<TEntity>)
   protected
     function CreateCommand(const ACommandSQL: string): TDataSet; override;
     procedure SetParamCommand(const ACommand: TDataSet; const AIndex: Integer; const AValue: Variant); override;
@@ -27,7 +28,7 @@ type
     function Entry(const AEntity: TEntity): TtftEntityState;
     function First(const AKeyValues: array of Variant): TEntity;
     function FirstOrDefault(const AKeyValues: array of Variant): TEntity;
-    procedure Save(const AEntity: TEntity);
+    procedure SaveChanges(const AEntity: TEntity);
   end;
 
 implementation
@@ -70,9 +71,9 @@ begin
   Result := inherited FirstOrDefault(AKeyValues);
 end;
 
-procedure TtftFDController<TEntity>.Save(const AEntity: TEntity);
+procedure TtftFDController<TEntity>.SaveChanges(const AEntity: TEntity);
 begin
-  DoSave(AEntity);
+  inherited SaveChanges(AEntity);
 end;
 
 procedure TtftFDController<TEntity>.SetParamCommand(const ACommand: TDataSet; const AIndex: Integer;

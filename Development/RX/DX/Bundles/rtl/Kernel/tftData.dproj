@@ -168,6 +168,8 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Sources\tftData.Messages.pas"/>
+        <DCCReference Include="Sources\tftData.Controller.pas"/>
+        <DCCReference Include="Sources\tftData.Controller.Extensions.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

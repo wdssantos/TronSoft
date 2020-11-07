@@ -164,15 +164,14 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
-        <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="DbxCommonDriver.dcp"/>
+        <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="IndyProtocols.dcp"/>
         <DCCReference Include="IndyCore.dcp"/>
         <DCCReference Include="RESTComponents.dcp"/>
         <DCCReference Include="Sources\tftCore.Controller.pas"/>
         <DCCReference Include="Sources\tftCore.Reflection.pas"/>
-        <DCCReference Include="Sources\tftCore.Controller.Extensions.pas"/>
         <DCCReference Include="Sources\tftCore.RESTRequest.pas"/>
         <DCCReference Include="Sources\tftCore.RESTRequestParams.pas"/>
         <DCCReference Include="Sources\tftCore.RESTRequestAuthenticator.pas"/>

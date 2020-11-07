@@ -31,8 +31,8 @@ package tftCore;
 
 requires
   rtl,
-  dbrtl,
   DbxCommonDriver,
+  dbrtl,
   IndySystem,
   IndyProtocols,
   IndyCore,
@@ -41,7 +41,6 @@ requires
 contains
   tftCore.Controller in 'Sources\tftCore.Controller.pas',
   tftCore.Reflection in 'Sources\tftCore.Reflection.pas',
-  tftCore.Controller.Extensions in 'Sources\tftCore.Controller.Extensions.pas',
   tftCore.RESTRequest in 'Sources\tftCore.RESTRequest.pas',
   tftCore.RESTRequestParams in 'Sources\tftCore.RESTRequestParams.pas',
   tftCore.RESTRequestAuthenticator in 'Sources\tftCore.RESTRequestAuthenticator.pas',

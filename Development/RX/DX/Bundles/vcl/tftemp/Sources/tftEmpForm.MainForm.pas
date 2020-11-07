@@ -152,7 +152,7 @@ begin
                   if not Assigned(FCnaeController.FirstOrDefault([LCnae.CD_CNAE])) then
                   begin
                     LCnae.DS_CNAE := LJSONProp.Pairs[1].JsonValue.Value;
-                    FCnaeController.Save(LCnae);
+                    FCnaeController.SaveChanges(LCnae);
                   end;
                 finally
                   FreeAndNil(LCnae);
@@ -203,7 +203,7 @@ begin
     Exit;
   end;
   FEmpresaController.Entry(FEmpresa).State := TEntityState.Deleted;
-  FEmpresaController.Save(FEmpresa);
+  FEmpresaController.SaveChanges(FEmpresa);
   FreeAndNil(FEmpresa);
   FEmpresa := TEmpresa.Create;
   DoUpdate(FEmpresa);
@@ -252,7 +252,7 @@ begin
     FEmpresa.CD_CNAE_2 := '';
   end;
 
-  FEmpresaController.Save(FEmpresa);
+  FEmpresaController.SaveChanges(FEmpresa);
   Application.MessageBox('Os dados da empresa foram salvas com sucesso!', 'Informação', MB_OK);
 end;
 
