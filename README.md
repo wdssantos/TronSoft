@@ -10,5 +10,7 @@ clean.bat limpa dos os aquivos temporários do projeto e a basta Library. Develo
 fbclient.dll para comunicação com o Firebird.
 
 Para a comunicação Socket OpenSSL, usado para requisição web, para pegar as CNAEs na web.
+
 libeay32.dll, C:\Windows\System32 e C:\Windows\SysWOW64
+
 ssleay32.dll, C:\Windows\System32 e C:\Windows\SysWOW64
