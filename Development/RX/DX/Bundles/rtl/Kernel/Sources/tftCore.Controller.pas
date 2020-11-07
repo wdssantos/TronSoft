@@ -68,12 +68,15 @@ type
   end;
 
   TtftController<TEntity: TtftEntity> = class(TtftController)
+  private
+    function getEntity: TEntity;
   protected
     function ToList: TList<TEntity>;
     function Entry(const AEntity: TEntity): TtftEntityState;
     function First(const AKeyValues: array of Variant): TEntity;
     function FirstOrDefault(const AKeyValues: array of Variant): TEntity;
     procedure DoSave(const AEntity: TEntity);
+    property Entity: TEntity read getEntity;
   public
     constructor Create(const AConnection: TCustomConnection);
   end;
@@ -182,6 +185,11 @@ end;
 function TtftController<TEntity>.FirstOrDefault(const AKeyValues: array of Variant): TEntity;
 begin
   Result := TEntity(inherited FirstOrDefault(AKeyValues));
+end;
+
+function TtftController<TEntity>.getEntity: TEntity;
+begin
+  Result := TEntity(inherited Entity);
 end;
 
 function TtftController<TEntity>.ToList: TList<TEntity>;
