@@ -41,6 +41,10 @@ contains
   tftData.SessionBase in 'Sources\tftData.SessionBase.pas' {damSessionBase: TDataModule},
   tftData.Messages in 'Sources\tftData.Messages.pas',
   tftData.Controller in 'Sources\tftData.Controller.pas',
-  tftData.Controller.Extensions in 'Sources\tftData.Controller.Extensions.pas';
+  tftData.Controller.Extensions in 'Sources\tftData.Controller.Extensions.pas',
+  tftData.RESTRequest in 'Sources\tftData.RESTRequest.pas',
+  tftData.RESTRequestAuthenticator in 'Sources\tftData.RESTRequestAuthenticator.pas',
+  tftData.RESTRequestParams in 'Sources\tftData.RESTRequestParams.pas',
+  tftData.RESTRequestTronSoftSimpleAuthenticator in 'Sources\tftData.RESTRequestTronSoftSimpleAuthenticator.pas';
 
 end.

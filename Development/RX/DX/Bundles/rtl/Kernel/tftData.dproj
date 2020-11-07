@@ -170,6 +170,10 @@
         <DCCReference Include="Sources\tftData.Messages.pas"/>
         <DCCReference Include="Sources\tftData.Controller.pas"/>
         <DCCReference Include="Sources\tftData.Controller.Extensions.pas"/>
+        <DCCReference Include="Sources\tftData.RESTRequest.pas"/>
+        <DCCReference Include="Sources\tftData.RESTRequestAuthenticator.pas"/>
+        <DCCReference Include="Sources\tftData.RESTRequestParams.pas"/>
+        <DCCReference Include="Sources\tftData.RESTRequestTronSoftSimpleAuthenticator.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

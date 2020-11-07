@@ -30,20 +30,10 @@ package tftCore;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl,
-  DbxCommonDriver,
-  dbrtl,
-  IndySystem,
-  IndyProtocols,
-  IndyCore,
-  RESTComponents;
+  rtl;
 
 contains
   tftCore.Controller in 'Sources\tftCore.Controller.pas',
-  tftCore.Reflection in 'Sources\tftCore.Reflection.pas',
-  tftCore.RESTRequest in 'Sources\tftCore.RESTRequest.pas',
-  tftCore.RESTRequestParams in 'Sources\tftCore.RESTRequestParams.pas',
-  tftCore.RESTRequestAuthenticator in 'Sources\tftCore.RESTRequestAuthenticator.pas',
-  tftCore.RESTRequestTronSoftSimpleAuthenticator in 'Sources\tftCore.RESTRequestTronSoftSimpleAuthenticator.pas';
+  tftCore.Reflection in 'Sources\tftCore.Reflection.pas';
 
 end.

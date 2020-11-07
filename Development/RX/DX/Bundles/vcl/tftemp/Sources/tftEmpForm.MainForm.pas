@@ -12,7 +12,7 @@ interface
 
 uses
 {PROJETO}
-  tftCore.RESTRequest,
+  tftData.RESTRequest,
   tftEmpData.CnaeController,
   tftEmpData.EmpresaController,
   tftEmpModel.Cnae,
@@ -58,8 +58,8 @@ implementation
 uses
 {PROJETO}
   tftCore.Controller,
-  tftCore.RESTRequestParams,
-  tftCore.RESTRequestTronSoftSimpleAuthenticator,
+  tftData.RESTRequestParams,
+  tftData.RESTRequestTronSoftSimpleAuthenticator,
   tftEmpData.Session,
 {IDE}
   System.Generics.Collections,
