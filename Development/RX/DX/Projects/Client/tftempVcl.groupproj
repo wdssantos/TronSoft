@@ -1,0 +1,108 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F16A31C6-F781-4888-9364-6FEF7A1F77CA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\Bundles\rtl\Kernel\tftCore.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bundles\rtl\Kernel\tftData.dproj">
+            <Dependencies>..\..\Bundles\rtl\Kernel\tftCore.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bundles\vcl\Kernel\tftForm.dproj">
+            <Dependencies>..\..\Bundles\rtl\Kernel\tftData.dproj;..\..\Bundles\rtl\Kernel\tftCore.dproj</Dependencies>
+        </Projects>
+        <Projects Include="vcl\tftemp\tftEmp.dproj">
+            <Dependencies>..\..\Bundles\vcl\tftemp\tftEmpForm.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bundles\rtl\tftemp\tftEmpModel.dproj">
+            <Dependencies>..\..\Bundles\rtl\Kernel\tftCore.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bundles\rtl\tftemp\tftEmpData.dproj">
+            <Dependencies>..\..\Bundles\rtl\Kernel\tftData.dproj;..\..\Bundles\rtl\tftemp\tftEmpModel.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bundles\vcl\tftemp\tftEmpForm.dproj">
+            <Dependencies>..\..\Bundles\vcl\Kernel\tftForm.dproj;..\..\Bundles\rtl\tftemp\tftEmpData.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="tftCore">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftCore.dproj"/>
+    </Target>
+    <Target Name="tftCore:Clean">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftCore.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftCore:Make">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftCore.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftData" DependsOnTargets="tftCore">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftData.dproj"/>
+    </Target>
+    <Target Name="tftData:Clean" DependsOnTargets="tftCore:Clean">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftData.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftData:Make" DependsOnTargets="tftCore:Make">
+        <MSBuild Projects="..\..\Bundles\rtl\Kernel\tftData.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftForm" DependsOnTargets="tftData;tftCore">
+        <MSBuild Projects="..\..\Bundles\vcl\Kernel\tftForm.dproj"/>
+    </Target>
+    <Target Name="tftForm:Clean" DependsOnTargets="tftData:Clean;tftCore:Clean">
+        <MSBuild Projects="..\..\Bundles\vcl\Kernel\tftForm.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftForm:Make" DependsOnTargets="tftData:Make;tftCore:Make">
+        <MSBuild Projects="..\..\Bundles\vcl\Kernel\tftForm.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftEmp" DependsOnTargets="tftEmpForm">
+        <MSBuild Projects="vcl\tftemp\tftEmp.dproj"/>
+    </Target>
+    <Target Name="tftEmp:Clean" DependsOnTargets="tftEmpForm:Clean">
+        <MSBuild Projects="vcl\tftemp\tftEmp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftEmp:Make" DependsOnTargets="tftEmpForm:Make">
+        <MSBuild Projects="vcl\tftemp\tftEmp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftEmpModel" DependsOnTargets="tftCore">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpModel.dproj"/>
+    </Target>
+    <Target Name="tftEmpModel:Clean" DependsOnTargets="tftCore:Clean">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpModel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftEmpModel:Make" DependsOnTargets="tftCore:Make">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpModel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftEmpData" DependsOnTargets="tftData;tftEmpModel">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpData.dproj"/>
+    </Target>
+    <Target Name="tftEmpData:Clean" DependsOnTargets="tftData:Clean;tftEmpModel:Clean">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpData.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftEmpData:Make" DependsOnTargets="tftData:Make;tftEmpModel:Make">
+        <MSBuild Projects="..\..\Bundles\rtl\tftemp\tftEmpData.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tftEmpForm" DependsOnTargets="tftForm;tftEmpData">
+        <MSBuild Projects="..\..\Bundles\vcl\tftemp\tftEmpForm.dproj"/>
+    </Target>
+    <Target Name="tftEmpForm:Clean" DependsOnTargets="tftForm:Clean;tftEmpData:Clean">
+        <MSBuild Projects="..\..\Bundles\vcl\tftemp\tftEmpForm.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tftEmpForm:Make" DependsOnTargets="tftForm:Make;tftEmpData:Make">
+        <MSBuild Projects="..\..\Bundles\vcl\tftemp\tftEmpForm.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="tftCore;tftData;tftForm;tftEmp;tftEmpModel;tftEmpData;tftEmpForm"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="tftCore:Clean;tftData:Clean;tftForm:Clean;tftEmp:Clean;tftEmpModel:Clean;tftEmpData:Clean;tftEmpForm:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="tftCore:Make;tftData:Make;tftForm:Make;tftEmp:Make;tftEmpModel:Make;tftEmpData:Make;tftEmpForm:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
