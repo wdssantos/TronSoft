@@ -108,7 +108,7 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 var
   LCnae: TCNAE;
-  LList: TList<TCNAE>;var
+  LList: TList<TCNAE>;
   LTronSoftSimple: TtftRESTRequestTronSoftSimpleAuthenticator;
 begin
   inherited;
