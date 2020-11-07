@@ -253,6 +253,7 @@ begin
   end;
 
   FEmpresaController.Save(FEmpresa);
+  Application.MessageBox('Os dados da empresa foram salvas com sucesso!', 'Informação', MB_OK);
 end;
 
 procedure TfrmMain.DoUpdate(const AEntity: TEmpresa);

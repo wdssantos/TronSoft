@@ -97,7 +97,6 @@ inherited frmMain: TfrmMain
     Top = 132
     Width = 210
     Height = 21
-    Style = csDropDownList
     TabOrder = 4
   end
   object cbxCD_CNAE_2: TComboBox
@@ -105,7 +104,6 @@ inherited frmMain: TfrmMain
     Top = 132
     Width = 209
     Height = 21
-    Style = csDropDownList
     TabOrder = 5
   end
   object btnPost: TButton
