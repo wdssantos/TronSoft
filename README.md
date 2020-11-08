@@ -3,7 +3,7 @@
 O projeto foi desenvolvido no Delphi 10.3.3.
 Encontre o arquivo tftempVcl.groupproj que está em Development/RX/DX/Projects/Client/ para abrir o projeto.
 
-Ao compilar o projeto, será criado uma pasta chamada Library, dendro da pasta Development/, que conterá o executável e todas as dependencias binárias do projeto.
+Ao compilar o projeto, será criado uma pasta chamada Library, dentro da pasta Development/, que conterá o executável e todas as dependencias binárias do projeto.
 
 clean.bat limpa todos os aquivos temporários do projeto e a basta Library que estão em Development/
 
