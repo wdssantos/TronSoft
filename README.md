@@ -5,9 +5,11 @@ Encontre o arquivo tftempVcl.groupproj que está em Development/RX/DX/Projects/C
 
 Ao compilar o projeto, será criado uma pasta chamada Library, dentro da pasta Development/, que conterá o executável e todas as dependencias binárias do projeto.
 
-clean.bat limpa todos os aquivos temporários do projeto e a pasta Library que estão em Development/
+clean.bat limpa todos os aquivos temporários do projeto e exclui a pasta Library que estão em Development/
 
 fbclient.dll para comunicação com o Firebird.
+
+TRONSOFT.GDB banco de dados Firebird
 
 Para a comunicação Socket OpenSSL, usado para requisição web, para pegar as CNAEs na web.
 
